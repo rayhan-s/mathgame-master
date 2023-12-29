@@ -22,13 +22,10 @@ class ResultMessage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            // the result
             Text(
               message,
               style: whiteTextStyle,
             ),
-
-            // button to go to next question
             GestureDetector(
               onTap: onTap,
               child: Container(

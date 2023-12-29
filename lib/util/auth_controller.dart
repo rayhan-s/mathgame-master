@@ -13,7 +13,7 @@ class AuthController extends GetxController {
   void onInit() {
     super.onInit();
     checkLoginStatus();
-  } // Cek status login saat controller diinisialisasi
+  }
 
   Future<void> checkLoginStatus() async {
     isLoggedIn.value = _prefs.containsKey('user_token');

@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:mathgametutorial/util/appwrite_controller.dart';
-import 'package:mathgametutorial/util/my_button.dart';
-import 'package:mathgametutorial/util/result_message.dart';
+import 'package:mathgametutorial/util/button_controller.dart';
+import 'package:mathgametutorial/util/result_controller.dart';
 
 enum MathOperation { Addition, Subtraction }
 
@@ -95,7 +95,6 @@ class _MediumLevelState extends State<MediumLevel> {
     } else if (userAnswer.length < 3) {
       userAnswer += button;
     }
-    resetTimer();
   }
 
   void checkResult() {
@@ -208,7 +207,7 @@ class _MediumLevelState extends State<MediumLevel> {
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:mathgametutorial/util/appwrite_controller.dart';
-import 'package:mathgametutorial/util/my_button.dart';
-import 'package:mathgametutorial/util/result_message.dart';
+import 'package:mathgametutorial/util/button_controller.dart';
+import 'package:mathgametutorial/util/result_controller.dart';
 
-enum MathOperation { Addition, Subtraction, Multiplication, Division }
+enum MathOperation { Multiplication, Division }
 
 class HardLevel extends StatefulWidget {
   final VoidCallback onAnswerCorrect;
@@ -36,7 +36,7 @@ class _HardLevelState extends State<HardLevel> {
 
   int numberA = 1;
   int numberB = 1;
-  MathOperation operation = MathOperation.Addition;
+  MathOperation operation = MathOperation.Multiplication;
 
   String userAnswer = '';
   late AppwriteController appwriteController;
@@ -94,19 +94,12 @@ class _HardLevelState extends State<HardLevel> {
     } else if (userAnswer.length < 3) {
       userAnswer += button;
     }
-    resetTimer();
   }
 
   void checkResult() {
     int correctAnswer;
 
     switch (operation) {
-      case MathOperation.Addition:
-        correctAnswer = numberA + numberB;
-        break;
-      case MathOperation.Subtraction:
-        correctAnswer = numberA - numberB;
-        break;
       case MathOperation.Multiplication:
         correctAnswer = numberA * numberB;
         break;
@@ -213,7 +206,7 @@ class _HardLevelState extends State<HardLevel> {
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -278,10 +271,6 @@ class _HardLevelState extends State<HardLevel> {
 
   String getOperationSymbol() {
     switch (operation) {
-      case MathOperation.Addition:
-        return '+';
-      case MathOperation.Subtraction:
-        return '-';
       case MathOperation.Multiplication:
         return 'x';
       case MathOperation.Division:
