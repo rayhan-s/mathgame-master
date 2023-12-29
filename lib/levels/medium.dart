@@ -157,8 +157,8 @@ class _MediumLevelState extends State<MediumLevel> {
   }
 
   void generateNewQuestion() {
-    numberA = randomNumber.nextInt(10);
-    numberB = randomNumber.nextInt(10);
+    numberA = randomNumber.nextInt(50);
+    numberB = randomNumber.nextInt(50);
 
     operation =
         MathOperation.values[randomNumber.nextInt(MathOperation.values.length)];
