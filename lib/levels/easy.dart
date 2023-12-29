@@ -176,7 +176,7 @@ class _EasyLevelState extends State<EasyLevel> {
             color: Colors.deepPurple,
             child: Center(
               child: Text(
-                'Math Game - Easy Level',
+                'Math Game - Level Easy',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,

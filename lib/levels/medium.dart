@@ -190,7 +190,7 @@ class _MediumLevelState extends State<MediumLevel> {
             color: Colors.deepOrange,
             child: Center(
               child: Text(
-                'Math Game - Medium Level',
+                'Math Game - Level Medium',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,

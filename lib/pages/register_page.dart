@@ -38,10 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFF6A1B9A),
-              Color(0xFF9C27B0)
-            ], // Warna ungu gradasi
+            colors: [Color(0xFF6A1B9A), Color(0xFF9C27B0)],
           ),
         ),
         child: Padding(

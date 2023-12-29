@@ -195,7 +195,7 @@ class _HardLevelState extends State<HardLevel> {
             color: Colors.teal,
             child: Center(
               child: Text(
-                'Math Game - Hard Level',
+                'Math Game - Level Hard',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
