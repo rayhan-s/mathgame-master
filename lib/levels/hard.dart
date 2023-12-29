@@ -43,7 +43,7 @@ class _HardLevelState extends State<HardLevel> {
 
   var randomNumber = Random();
 
-  int timerDurationInSeconds = 3 * 60;
+  int timerDurationInSeconds = 10;
   late Timer timer;
 
   @override
@@ -167,7 +167,7 @@ class _HardLevelState extends State<HardLevel> {
   void resetTimer() {
     setState(() {
       timer.cancel();
-      timerDurationInSeconds = 3 * 60;
+      timerDurationInSeconds = 10;
       startTimer();
     });
   }
@@ -284,8 +284,8 @@ class _HardLevelState extends State<HardLevel> {
   }
 
   String formatTimer(int seconds) {
-    int minutes = seconds ~/ 60;
-    int remainingSeconds = seconds % 60;
+    int minutes = seconds ~/ 10;
+    int remainingSeconds = seconds % 10;
     return '$minutes:${remainingSeconds.toString().padLeft(2, '0')}';
   }
 }

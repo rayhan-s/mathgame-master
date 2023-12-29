@@ -42,7 +42,7 @@ class _EasyLevelState extends State<EasyLevel> {
 
   var randomNumber = Random();
 
-  int timerDurationInSeconds = 3 * 60;
+  int timerDurationInSeconds = 30;
   late Timer timer;
 
   @override
@@ -92,6 +92,7 @@ class _EasyLevelState extends State<EasyLevel> {
     } else if (userAnswer.length < 3) {
       userAnswer += button;
     }
+    resetTimer();
   }
 
   void checkResult() {
@@ -128,17 +129,28 @@ class _EasyLevelState extends State<EasyLevel> {
     setState(() {
       userAnswer = '';
       widget.onAnswerCorrect();
-      generateNewQuestion();
     });
+
+    resetTimer();
   }
 
   void goBackToQuestion() {
     Navigator.of(context).pop();
+
+    resetTimer();
   }
 
   void generateNewQuestion() {
     numberA = randomNumber.nextInt(10);
     numberB = randomNumber.nextInt(10);
+  }
+
+  void resetTimer() {
+    setState(() {
+      timer.cancel();
+      timerDurationInSeconds = 30;
+      startTimer();
+    });
   }
 
   @override
@@ -240,8 +252,8 @@ class _EasyLevelState extends State<EasyLevel> {
   }
 
   String formatTimer(int seconds) {
-    int minutes = seconds ~/ 60;
-    int remainingSeconds = seconds % 60;
+    int minutes = seconds ~/ 30;
+    int remainingSeconds = seconds % 30;
     return '$minutes:${remainingSeconds.toString().padLeft(2, '0')}';
   }
 }

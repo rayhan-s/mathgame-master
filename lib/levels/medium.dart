@@ -44,7 +44,7 @@ class _MediumLevelState extends State<MediumLevel> {
 
   var randomNumber = Random();
 
-  int timerDurationInSeconds = 3 * 60;
+  int timerDurationInSeconds = 20;
   late Timer timer;
 
   @override
@@ -94,6 +94,7 @@ class _MediumLevelState extends State<MediumLevel> {
     } else if (userAnswer.length < 3) {
       userAnswer += button;
     }
+    resetTimer();
   }
 
   void checkResult() {
@@ -139,12 +140,15 @@ class _MediumLevelState extends State<MediumLevel> {
     setState(() {
       userAnswer = '';
       widget.onAnswerCorrect();
-      generateNewQuestion();
     });
+
+    resetTimer();
   }
 
   void goBackToQuestion() {
     Navigator.of(context).pop();
+
+    resetTimer();
   }
 
   void generateNewQuestion() {
@@ -153,6 +157,14 @@ class _MediumLevelState extends State<MediumLevel> {
 
     operation =
         MathOperation.values[randomNumber.nextInt(MathOperation.values.length)];
+  }
+
+  void resetTimer() {
+    setState(() {
+      timer.cancel();
+      timerDurationInSeconds = 20;
+      startTimer();
+    });
   }
 
   @override
@@ -263,8 +275,8 @@ class _MediumLevelState extends State<MediumLevel> {
   }
 
   String formatTimer(int seconds) {
-    int minutes = seconds ~/ 60;
-    int remainingSeconds = seconds % 60;
+    int minutes = seconds ~/ 20;
+    int remainingSeconds = seconds % 20;
     return '$minutes:${remainingSeconds.toString().padLeft(2, '0')}';
   }
 }
