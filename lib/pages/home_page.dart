@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'levels/easy.dart';
-import 'levels/hard.dart';
-import 'levels/medium.dart';
+import '../levels/easy.dart';
+import '../levels/hard.dart';
+import '../levels/medium.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

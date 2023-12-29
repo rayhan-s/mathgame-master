@@ -1,11 +1,9 @@
-// easy_level.dart
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:mathgametutorial/util/appwrite_controller.dart';
 import 'package:mathgametutorial/util/my_button.dart';
 import 'package:mathgametutorial/util/result_message.dart';
-
 import 'medium.dart';
 
 class EasyLevel extends StatefulWidget {

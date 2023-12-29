@@ -1,7 +1,5 @@
-// hard_level.dart
 import 'dart:async';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:mathgametutorial/util/appwrite_controller.dart';
 import 'package:mathgametutorial/util/my_button.dart';
