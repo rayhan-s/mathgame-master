@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:mathgametutorial/util/appwrite_controller.dart';
 import 'package:mathgametutorial/util/my_button.dart';
 import 'package:mathgametutorial/util/result_message.dart';
 
@@ -40,7 +41,7 @@ class _HardLevelState extends State<HardLevel> {
   MathOperation operation = MathOperation.Addition;
 
   String userAnswer = '';
-
+  late AppwriteController appwriteController;
   var randomNumber = Random();
 
   int timerDurationInSeconds = 10;
@@ -49,6 +50,7 @@ class _HardLevelState extends State<HardLevel> {
   @override
   void initState() {
     super.initState();
+    appwriteController = AppwriteController();
 
     startTimer();
 
@@ -79,6 +81,7 @@ class _HardLevelState extends State<HardLevel> {
         );
       },
     );
+    resetTimer();
   }
 
   void buttonTapped(String button) {
@@ -118,9 +121,14 @@ class _HardLevelState extends State<HardLevel> {
       showDialog(
         context: context,
         builder: (context) {
+          String documentId = DateTime.now().millisecondsSinceEpoch.toString();
+
           return ResultMessage(
             message: 'Correct!',
-            onTap: goToNextQuestion,
+            onTap: () {
+              appwriteController.sendUserAnswer(userAnswer, documentId);
+              goToNextQuestion();
+            },
             icon: Icons.arrow_forward,
           );
         },

@@ -1,8 +1,8 @@
-// medium_level.dart
 import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:mathgametutorial/util/appwrite_controller.dart';
 import 'package:mathgametutorial/util/my_button.dart';
 import 'package:mathgametutorial/util/result_message.dart';
 
@@ -41,7 +41,7 @@ class _MediumLevelState extends State<MediumLevel> {
   MathOperation operation = MathOperation.Addition;
 
   String userAnswer = '';
-
+  late AppwriteController appwriteController;
   var randomNumber = Random();
 
   int timerDurationInSeconds = 20;
@@ -50,6 +50,7 @@ class _MediumLevelState extends State<MediumLevel> {
   @override
   void initState() {
     super.initState();
+    appwriteController = AppwriteController();
 
     startTimer();
 
@@ -80,6 +81,7 @@ class _MediumLevelState extends State<MediumLevel> {
         );
       },
     );
+    resetTimer();
   }
 
   void buttonTapped(String button) {
@@ -113,9 +115,14 @@ class _MediumLevelState extends State<MediumLevel> {
       showDialog(
         context: context,
         builder: (context) {
+          String documentId = DateTime.now().millisecondsSinceEpoch.toString();
+
           return ResultMessage(
             message: 'Correct!',
-            onTap: goToNextQuestion,
+            onTap: () {
+              appwriteController.sendUserAnswer(userAnswer, documentId);
+              goToNextQuestion();
+            },
             icon: Icons.arrow_forward,
           );
         },

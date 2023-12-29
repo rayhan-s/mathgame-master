@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:mathgametutorial/util/appwrite_controller.dart';
 import 'package:mathgametutorial/util/my_button.dart';
 import 'package:mathgametutorial/util/result_message.dart';
 
@@ -38,8 +39,8 @@ class _EasyLevelState extends State<EasyLevel> {
   int numberB = 1;
   MathOperation operation = MathOperation.Addition;
 
+  late AppwriteController appwriteController;
   String userAnswer = '';
-
   var randomNumber = Random();
 
   int timerDurationInSeconds = 30;
@@ -50,6 +51,7 @@ class _EasyLevelState extends State<EasyLevel> {
     super.initState();
 
     startTimer();
+    appwriteController = AppwriteController();
 
     generateNewQuestion();
   }
@@ -78,6 +80,7 @@ class _EasyLevelState extends State<EasyLevel> {
         );
       },
     );
+    resetTimer();
   }
 
   void buttonTapped(String button) {
@@ -102,9 +105,14 @@ class _EasyLevelState extends State<EasyLevel> {
       showDialog(
         context: context,
         builder: (context) {
+          String documentId = DateTime.now().millisecondsSinceEpoch.toString();
+
           return ResultMessage(
             message: 'Correct!',
-            onTap: goToNextQuestion,
+            onTap: () {
+              appwriteController.sendUserAnswer(userAnswer, documentId);
+              goToNextQuestion();
+            },
             icon: Icons.arrow_forward,
           );
         },
